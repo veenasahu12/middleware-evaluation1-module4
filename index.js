@@ -8,7 +8,7 @@ app.get("/books",(req,res)=>{
     return res.send({route:"/books"});
 });
 
-app.get("/libraries ",checkpermission("librarian"),(req,res)=>{
+app.get("/libraries ",(req,res)=>{
     return res.send({ route: "/libraries", permission: true});
 });
 
@@ -32,7 +32,7 @@ function checkpermission(permission){
 }
 function logger(req,res,next){
     if(req.path === "/books"){
-        req.permission = "books";
+        req.permission = "true";
     }
     else if(req.path === "/libraries"){
         req.permission = "libraries";
@@ -43,6 +43,6 @@ function logger(req,res,next){
     next();
 }
 
-app.listen(6000,() =>{
+app.listen(6001,() =>{
     console.log("listening on port 6000");
 })
